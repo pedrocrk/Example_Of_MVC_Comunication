@@ -1,0 +1,74 @@
+﻿@model PROYECT.Modelos.DesarrolloGrupos
+
+@Scripts.Render("~/app/Integracion/DesarrolloGrupos/Grupo_Detalle")
+
+<div class="modal inmodal" id="ModalDesarrolloGrupos" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog" style=" width:400px;">
+        <div class="modal-content animated fadeInUp">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" id="btnCloseW"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Grupo de desarrollo</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+
+                <div class="wrapper wrapper-content animated fadeInRight gray-bg" style="padding: 4px; margin:4px;">
+
+                    <input type="hidden" value="@ViewBag.Permisos" id="PermisoUsrDetalle" />
+
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "frmDesarrolloGrupos", id = "frmDesarrolloGrupos" }))
+                    {
+                        @Html.AntiForgeryToken();
+                        @Html.ValidationSummary(true);
+                        Html.EnableClientValidation(true);
+
+
+                        <div class="row" style="margin-top: 10px;">
+                            <div class=" col-lg-12">
+                                <div class="form-group" style="width:100%;">
+                                    <label>Nombre</label>
+                                    @Html.TextBoxFor(model => model.Grupo_Nombre, new { @class = "form-control", @placeholder = "Nombre" })
+                                    @Html.ValidationMessageFor(model => model.Grupo_Nombre)
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="form-group" style="width:100%;">
+                                    <label>Estatus</label>
+                                    <div class="switch">
+                                        <div class="onoffswitch">
+                                            <div style=" display:none;">@Html.EditorFor(model => model.Estatus)</div>
+                                            <input type="checkbox" @{ if (Model.Estatus == true) { @Html.Raw("checked")  ; }} class="onoffswitch-checkbox" id="Estatuss2" name="Estatuss2" onclick="Cambia(this, 'Estatus');">
+                                            <label class="onoffswitch-label" for="Estatuss2">
+                                                <span class="onoffswitch-inner"></span>
+                                                <span class="onoffswitch-switch"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-MinScreen" style="margin-top: 10px;">
+                            <div class="col-lg-12">
+                                <div class=" pull-right">
+                                    <button class="btn btn-primary" type="button" id="btnGuardar"><i class="fa fa-save"></i>&nbsp;Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                        @Html.HiddenFor(model => model.Grupo_Id)
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        InicializarDetalle();
+    });
+</script>
