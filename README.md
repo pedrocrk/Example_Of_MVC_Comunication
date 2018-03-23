@@ -1,2 +1,6 @@
 # Example_Of_MVC_Comunication
-Example of comunnication on mvc
+Author:	Pedro Vargas Licona
+
+Create date: 02/2018
+
+Description: Example of comunnication on mvc
